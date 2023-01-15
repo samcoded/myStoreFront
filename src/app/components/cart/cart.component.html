@@ -1,1 +1,7 @@
 <p>cart works!</p>
+<p *ngFor="let item of cartItems">
+  {{item.name}} {{item.quantity}}
+  {{item.price * item.quantity}}
+
+  <button (click)="removeItem(item.id)">Remove from cart</button>
+</p>
