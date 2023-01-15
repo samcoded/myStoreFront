@@ -1,2 +1,14 @@
 <p>product-detail works!</p>
-ID : {{productId}}
+<div *ngIf="product">
+  {{product.name}}
+  <img [src]="product.image" alt="product image" />
+  <span>{{product.price}}</span>
+  {{product.description}}
+
+  <button (click)="addToCart(product.id,1)">Add to cart</button>
+  <div *ngIf="product.quantity">
+    <p>Quantity added to cart: {{product.quantity}}</p>
+    <button (click)="removeOneItem(product.id)">Remove 1 from cart</button>
+    <button (click)="removeItem(product.id)">Remove all from cart</button>
+  </div>
+</div>

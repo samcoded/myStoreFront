@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Product } from '../../models/product';
+import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -8,13 +11,46 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailComponent {
   productId: number = 0;
+  product: Product = {} as Product;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      console.log(params);
       this.productId = params['id'];
     });
+
+    this.productService.show(this.productId).subscribe((product) => {
+      this.product = product;
+      this.product.quantity = 0;
+    });
+
+    this.updateCart();
+  }
+
+  ngDoCheck(): void {
+    this.updateCart();
+  }
+
+  addToCart(productId: number, quantity: number): void {
+    this.cartService.addToCart(productId, quantity);
+  }
+
+  removeOneItem(productId: number): void {
+    this.cartService.removeOneItem(productId);
+  }
+
+  removeItem(productId: number): void {
+    this.cartService.removeItem(productId);
+    this.updateCart();
+  }
+
+  updateCart(): void {
+    const cartItem = this.cartService.checkProduct(this.productId);
+    this.product.quantity = cartItem;
   }
 }
