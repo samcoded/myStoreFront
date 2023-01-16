@@ -49,11 +49,15 @@ export class CartComponent {
   removeItem(productId: number): void {
     this.cartService.removeItem(productId);
     this.cartItems = this.cartItems.filter((item) => item.id != productId);
+    alert('Product removed from cart!');
   }
 
   clearCart(): void {
-    this.cartService.clearCart();
-    this.cartItems = [];
+    if (confirm('Are you sure you want to clear the cart?')) {
+      this.cartService.clearCart();
+      this.cartItems = [];
+      alert('Cart cleared!');
+    }
   }
 
   onSubmit(): void {

@@ -32,6 +32,7 @@ export class ProductItemComponent {
   onRemoveItem() {
     this.removeAllFromCart.emit(this.product);
     this.updateCart();
+    alert('Product removed from cart!');
   }
   updateCart(): void {
     const cartItem = this.cartService.checkProductInCart(this.product.id);

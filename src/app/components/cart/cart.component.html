@@ -1,6 +1,11 @@
 <div class="cart-container">
 
   <div class="cart-item-details" *ngIf="cartItems.length">
+    <div class="cart-item">
+      <button (click)="clearCart()" class="product-detail btn btn-primary mx-2">
+        Clear all cart
+      </button>
+    </div>
     <div *ngFor="let item of cartItems" class="cart-item">
       <img class="" src='{{item.image}}'>
       <div class="cart-panel">
@@ -47,6 +52,18 @@
 </div>
 <div #noCart *ngIf="!cartItems.length">
   <div class="empty-cart-message">
-    Cart is Empty! Please, <a routerLink="/"> add product to cart</a>.
+    Cart is Empty! Please add items to cart.
   </div>
+
+  <div class="empty-cart-message">
+
+    <div class="product-item-detail my-5">
+      <a routerLink="/" class="product-detail btn btn-primary">
+        Back to products
+      </a>
+    </div>
+
+  </div>
+
+
 </div>
