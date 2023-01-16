@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class CartComponent {
   city: string = '';
   creditCardNumber: string = '';
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private route: Router) {}
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getProducts();
@@ -48,11 +49,9 @@ export class CartComponent {
 
   onSubmit(): void {
     this.cartService.clearCart();
-    this.cartItems = [];
-    this.fullName = '';
-    this.address = '';
-    this.city = '';
-    this.creditCardNumber = '';
-    alert('Order placed!');
+
+    this.route.navigateByUrl('/confirm', {
+      state: { fullName: this.fullName, totalPrice: this.cartTotalPrice },
+    });
   }
 }

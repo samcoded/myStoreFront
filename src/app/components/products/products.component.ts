@@ -24,6 +24,6 @@ export class ProductsComponent {
 
   addToCart(product: Product): void {
     this.cartService.addToCart(product.id, product.quantity || 1);
-    alert('Product added to cart!');
+    // alert('Product added to cart!');
   }
 }
