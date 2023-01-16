@@ -38,7 +38,7 @@ export class ProductDetailComponent {
 
   addToCart(productId: number, quantity: number): void {
     this.cartService.addToCart(productId, quantity);
-    alert('Product added to cart!');
+    // alert('Product added to cart!');
   }
 
   removeOneItem(productId: number): void {

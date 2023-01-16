@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
@@ -13,16 +14,18 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = 'http://localhost:4200/assets/data.json';
 
   constructor(private http: HttpClient) {}
 
   index(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products`);
+    return this.http.get<Product[]>(`${this.apiUrl}`);
   }
 
   show(id: number): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/products/${id}`);
+    return this.index().pipe(
+      map((products) => products.find((product) => product.id == id) as Product)
+    );
   }
 
   create(product: Product): Observable<Product> {

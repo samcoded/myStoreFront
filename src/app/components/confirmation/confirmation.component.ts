@@ -10,7 +10,6 @@ export class ConfirmationComponent {
   totalPrice: number = 0;
 
   ngOnInit(): void {
-    console.log(history.state);
     this.fullName = history.state.fullName;
     this.totalPrice = history.state.totalPrice;
   }
