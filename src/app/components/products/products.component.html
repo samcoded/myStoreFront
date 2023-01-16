@@ -1,12 +1,1 @@
-<p *ngFor="let product of products">
-  <a [routerLink]="['/product', product.id]">
-    {{product.name}}
-
-    <img [src]="product.image" alt="product image" />
-
-    <span>{{product.price}}</span>
-    {{product.description}}
-
-  </a>
-  <button (click)="addToCart(product.id,1)">Add to cart</button>
-</p>
+<app-product-item *ngFor="let product of products" [product]="product" (addToCart)="addToCart(product)"></app-product-item>

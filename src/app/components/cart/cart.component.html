@@ -1,7 +1,27 @@
-<p>cart works!</p>
+<button (click)="clearCart()">Clear cart</button>
+
 <p *ngFor="let item of cartItems">
   {{item.name}} {{item.quantity}}
-  {{item.price * item.quantity}}
+  ${{item.price * item.quantity}} (${{item.price}} each)
 
   <button (click)="removeItem(item.id)">Remove from cart</button>
 </p>
+
+<p>Total Amount: ${{cartTotalPrice}}</p>
+
+<form class="form-margin" #form="ngForm" (ngSubmit)="onSubmit()" *ngIf="cartItems.length">
+  <h1> Checkout </h1>
+  <label>Full Name: </label><br />
+  <input type='text' name='fullName' required minlength="9" placeholder="Enter First Name" [(ngModel)]="fullName">
+  <br />
+  <label>Address: </label><br />
+  <input type='text' name='address' required minlength="10" placeholder="Enter Address" [(ngModel)]="address">
+  <br />
+  <label>City: </label><br />
+  <input type='text' name='city' required minlength="3" placeholder="Enter City" [(ngModel)]="city">
+  <br />
+  <label>Credit Card Number: </label><br />
+  <input type='text' name='creditCardNumber' required minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="creditCardNumber">
+  <br />
+  <input [disabled]="form.invalid" type='submit' value="Submit" class="btn btn-primary" />
+</form>

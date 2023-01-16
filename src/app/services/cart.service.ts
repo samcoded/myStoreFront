@@ -69,36 +69,14 @@ export class CartService {
     localStorage.removeItem('cart');
   }
 
-  // function to get total price of cart items
-  getTotalPrice(): number {
-    const cart = this.getCart();
-    let totalPrice = 0;
-    cart.map((x) => {
-      this.productService.show(x.productId).subscribe((data) => {
-        totalPrice += data.price * x.quantity;
-      });
-    });
-    return totalPrice;
-  }
-
   // function to get total cart items
   getTotalItems(): number {
     const cart = this.getCart();
     return cart.length;
   }
 
-  // function to get total quantity of cart items
-  getTotalQuantity(): number {
-    const cart = this.getCart();
-    let totalQuantity = 0;
-    cart.map((x) => {
-      totalQuantity += x.quantity;
-    });
-    return totalQuantity;
-  }
-
   // check if product in cart and return quantity
-  checkProduct(productId: number): number {
+  checkProductInCart(productId: number): number {
     const cart = this.getCart();
     const cartItem = cart.find((x) => x.productId == productId);
     return cartItem ? cartItem.quantity : 0;

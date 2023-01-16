@@ -22,7 +22,8 @@ export class ProductsComponent {
     });
   }
 
-  addToCart(productId: number, quantity: number): void {
-    this.cartService.addToCart(productId, quantity);
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product.id, product.quantity || 1);
+    alert('Product added to cart!');
   }
 }

@@ -38,19 +38,22 @@ export class ProductDetailComponent {
 
   addToCart(productId: number, quantity: number): void {
     this.cartService.addToCart(productId, quantity);
+    alert('Product added to cart!');
   }
 
   removeOneItem(productId: number): void {
     this.cartService.removeOneItem(productId);
+    this.updateCart();
   }
 
   removeItem(productId: number): void {
     this.cartService.removeItem(productId);
     this.updateCart();
+    alert('Product removed from cart!');
   }
 
   updateCart(): void {
-    const cartItem = this.cartService.checkProduct(this.productId);
+    const cartItem = this.cartService.checkProductInCart(this.productId);
     this.product.quantity = cartItem;
   }
 }

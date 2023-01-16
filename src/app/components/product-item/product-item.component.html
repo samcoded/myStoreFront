@@ -1,1 +1,12 @@
-<p>product-item works!</p>
+<p>
+  <a [routerLink]="['/product', product.id]">
+    {{product.name}}
+
+    <img [src]="product.image" alt="product image" />
+
+    <span>{{product.price}}</span>
+    {{product.description}}
+
+  </a>
+  <button (click)="onAddToCart()">Add to cart</button>
+</p>
