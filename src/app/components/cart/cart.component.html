@@ -1,11 +1,11 @@
 <button (click)="clearCart()">Clear cart</button>
 
-<p *ngFor="let item of cartItems">
+<div *ngFor="let item of cartItems">
   {{item.name}} {{item.quantity}}
   ${{item.price * item.quantity}} (${{item.price}} each)
-
-  <button (click)="removeItem(item.id)">Remove from cart</button>
-</p>
+  <p></p>
+  <button (click)="removeOneItem(item.id)">-</button> {{item.quantity}} <button (click)="addToCart(item.id,1)">+</button> <button (click)="removeItem(item.id)">D</button>
+</div>
 
 <p>Total Amount: ${{cartTotalPrice}}</p>
 

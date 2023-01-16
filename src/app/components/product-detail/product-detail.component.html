@@ -4,10 +4,12 @@
   <span>{{product.price}}</span>
   {{product.description}}
 
-  <button (click)="addToCart(product.id,1)">Add to cart</button>
+  <button (click)="addToCart(product.id)" *ngIf="!product.quantity">Add to cart</button>
   <div *ngIf="product.quantity">
-    <p>Quantity added to cart: {{product.quantity}}</p>
-    <button (click)="removeOneItem(product.id)">Remove 1 from cart</button>
-    <button (click)="removeItem(product.id)">Remove all from cart</button>
+    <p>Added to cart</p>
+    <button (click)="removeOneItem(product.id)">-</button> {{product.quantity}} <button (click)="addToCart(product.id)">+</button>
+    <br />
+    <br />
+    <button (click)="removeItem(product.id)">Remove Item from cart</button>
   </div>
 </div>

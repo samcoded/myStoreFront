@@ -23,7 +23,15 @@ export class ProductsComponent {
   }
 
   addToCart(product: Product): void {
-    this.cartService.addToCart(product.id, product.quantity || 1);
+    this.cartService.addToCart(product.id, 1);
     // alert('Product added to cart!');
+  }
+
+  removeFromCart(product: Product): void {
+    this.cartService.removeOneItem(product.id);
+  }
+
+  removeAllFromCart(product: Product): void {
+    this.cartService.removeItem(product.id);
   }
 }

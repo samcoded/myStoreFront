@@ -19,7 +19,9 @@ export class CartComponent {
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getProducts();
+    this.cartTotalPrice = this.totalPrice();
   }
+
   ngDoCheck(): void {
     this.cartTotalPrice = this.totalPrice();
   }
@@ -30,6 +32,12 @@ export class CartComponent {
       total += item.price * item.quantity;
     });
     return total;
+  }
+
+  addToCart(productId: number, quantity: number): void {
+    this.cartService.addToCart(productId, quantity);
+    this.cartItems = this.cartService.getProducts();
+    // alert('Product added to cart!');
   }
 
   removeItem(productId: number): void {
@@ -49,7 +57,6 @@ export class CartComponent {
 
   onSubmit(): void {
     this.cartService.clearCart();
-
     this.route.navigateByUrl('/confirm', {
       state: { fullName: this.fullName, totalPrice: this.cartTotalPrice },
     });

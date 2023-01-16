@@ -1,12 +1,19 @@
-<p>
-  <a [routerLink]="['/product', product.id]">
-    {{product.name}}
+<a [routerLink]="['/product', product.id]">
+  {{product.name}}
 
-    <img [src]="product.image" alt="product image" />
+  <!-- <img [src]="product.image" alt="product image" /> -->
 
-    <span>{{product.price}}</span>
-    {{product.description}}
+  <span>{{product.price}}</span>
 
-  </a>
+</a>
+<div *ngIf="!product.quantity">
+  <p></p>
   <button (click)="onAddToCart()">Add to cart</button>
-</p>
+</div>
+<div *ngIf="product.quantity">
+  <p></p>
+  <button (click)="onRemoveOneItem()">-</button> {{product.quantity}} <button (click)="onAddToCart()">+</button> <button (click)="onRemoveItem()">D</button>
+  <p>Added to cart</p>
+</div>
+<br />
+<br />
