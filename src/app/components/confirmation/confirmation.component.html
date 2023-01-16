@@ -1,5 +1,21 @@
-<p>
-  Fullname: {{fullName}}
+<div class="confirmation-container">
+  <div class="confirmation-items ">
+    <div class="confirmation-header confirmation-item">
+      Order placed successfully!
+    </div>
+    <div class="confirmation-item">Thank you, <b>
+        {{ fullName }}</b></div>
+    <div class="confirmation-item">Total Amount: <b>$
+        {{ totalPrice }}</b></div>
 
-  Total Price: {{totalPrice}}
-</p>
+    <div class="confirmation-item">Shipping to: <b>
+        {{ address }}, {{city}}</b> </div>
+    <div class="confirmation-item my-5">
+
+      <a routerLink="/" class="product-detail btn btn-primary">
+        Back to products
+      </a>
+
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,6 +13,7 @@ import { CartService } from '../../services/cart.service';
 export class ProductDetailComponent {
   productId: number = 0;
   product: Product = {} as Product;
+  deleteIcon = faTrash;
 
   constructor(
     private route: ActivatedRoute,

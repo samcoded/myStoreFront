@@ -8,9 +8,13 @@ import { Component } from '@angular/core';
 export class ConfirmationComponent {
   fullName: string = '';
   totalPrice: number = 0;
+  address: string = '';
+  city: string = '';
 
   ngOnInit(): void {
     this.fullName = history.state.fullName;
     this.totalPrice = history.state.totalPrice;
+    this.address = history.state.address;
+    this.city = history.state.city;
   }
 }

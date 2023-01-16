@@ -1,15 +1,31 @@
-<div *ngIf="product">
-  {{product.name}}
-  <img [src]="product.image" alt="product image" />
-  <span>{{product.price}}</span>
-  {{product.description}}
+<div *ngIf="product" class="detail-container">
+  <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <img class="product-image" src='{{ product.image}}'>
+    </div>
+    <div class="detail-item">
+      <div class="product-item-detail product-title"><b>
+          {{ product.name }}</b></div>
+      <div class="product-item-detail">$
+        {{ product.price }}
+      </div>
+      <div class="product-item-detail">
+        {{ product.description }}
+      </div>
 
-  <button (click)="addToCart(product.id)" *ngIf="!product.quantity">Add to cart</button>
-  <div *ngIf="product.quantity">
-    <p>Added to cart</p>
-    <button (click)="removeOneItem(product.id)">-</button> {{product.quantity}} <button (click)="addToCart(product.id)">+</button>
-    <br />
-    <br />
-    <button (click)="removeItem(product.id)">Remove Item from cart</button>
+      <div *ngIf="!product.quantity">
+        <button (click)="addToCart(product.id)" class="product-detail btn btn-primary">Add to cart</button>
+      </div>
+      <div *ngIf="product.quantity">
+        <button (click)="removeOneItem(product.id)" class="product-detail btn btn-primary">-</button> {{product.quantity}} <button (click)="addToCart(product.id)" class="product-detail btn btn-primary">+</button> <button (click)="removeItem(product.id)" class="product-detail btn btn-primary mx-2">
+          <fa-icon [icon]="deleteIcon"></fa-icon>
+        </button>
+      </div>
+      <div class="product-item-detail my-5">
+        <a routerLink="/" class="product-detail btn btn-primary">
+          Back to products
+        </a>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,27 +1,52 @@
-<button (click)="clearCart()">Clear cart</button>
+<div class="cart-container">
 
-<div *ngFor="let item of cartItems">
-  {{item.name}} {{item.quantity}}
-  ${{item.price * item.quantity}} (${{item.price}} each)
-  <p></p>
-  <button (click)="removeOneItem(item.id)" [disabled]="item.quantity <= 1">-</button> {{item.quantity}} <button (click)="addToCart(item.id)">+</button> <button (click)="removeItem(item.id)">D</button>
+  <div class="cart-item-details" *ngIf="cartItems.length">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img class="" src='{{item.image}}'>
+      <div class="cart-panel">
+        <div class="product-item-detail">
+          {{ item.name}}
+        </div>
+        <div class="product-item-detail">$
+          {{ item.price}}
+        </div>
+        <div class="product-item-detail">
+          <button (click)="removeOneItem(item.id)" [disabled]="item.quantity <= 1" class="product-detail btn btn-primary mx-2">-</button> <span class="product-detail">{{item.quantity}} </span><button (click)=" addToCart(item.id)" class="product-detail btn btn-primary mx-2">+</button> <button (click)="removeItem(item.id)" class="product-detail btn btn-primary mx-2">
+            <fa-icon [icon]="deleteIcon"></fa-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <!-- <div class="cart-item"><b>Total Amount: $
+        {{ cartTotalPrice }}</b></div> -->
+  </div>
+
+
+  <div class="form-margin" id="top">
+    <form class="form-margin" #form="ngForm" (ngSubmit)="onSubmit()" *ngIf="cartItems.length">
+      <h1> Checkout </h1>
+      <div class="cart-item"><b>Total Amount: $
+          {{ cartTotalPrice }}</b></div>
+      <label>Full Name: </label><br />
+      <input type='text' name='fullName' required minlength="9" placeholder="Enter First Name" [(ngModel)]="fullName">
+      <br />
+      <label>Address: </label><br />
+      <input type='text' name='address' required minlength="10" placeholder="Enter Address" [(ngModel)]="address">
+      <br />
+      <label>City: </label><br />
+      <input type='text' name='city' required minlength="3" placeholder="Enter City" [(ngModel)]="city">
+      <br />
+      <label>Credit Card Number: </label><br />
+      <input type='text' name='creditCardNumber' required minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="creditCardNumber">
+      <br />
+      <input [disabled]="form.invalid" type='submit' value="Submit" class="btn btn-primary my-2" />
+    </form>
+
+  </div>
 </div>
-
-<p>Total Amount: ${{cartTotalPrice}}</p>
-
-<form class="form-margin" #form="ngForm" (ngSubmit)="onSubmit()" *ngIf="cartItems.length">
-  <h1> Checkout </h1>
-  <label>Full Name: </label><br />
-  <input type='text' name='fullName' required minlength="9" placeholder="Enter First Name" [(ngModel)]="fullName">
-  <br />
-  <label>Address: </label><br />
-  <input type='text' name='address' required minlength="10" placeholder="Enter Address" [(ngModel)]="address">
-  <br />
-  <label>City: </label><br />
-  <input type='text' name='city' required minlength="3" placeholder="Enter City" [(ngModel)]="city">
-  <br />
-  <label>Credit Card Number: </label><br />
-  <input type='text' name='creditCardNumber' required minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="creditCardNumber">
-  <br />
-  <input [disabled]="form.invalid" type='submit' value="Submit" class="btn btn-primary" />
-</form>
+<div #noCart *ngIf="!cartItems.length">
+  <div class="empty-cart-message">
+    Cart is Empty! Please, <a routerLink="/"> add product to cart</a>.
+  </div>
+</div>

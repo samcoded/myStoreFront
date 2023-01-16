@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product-item',
@@ -12,7 +13,7 @@ export class ProductItemComponent {
   @Output() addToCart = new EventEmitter();
   @Output() removeFromCart = new EventEmitter();
   @Output() removeAllFromCart = new EventEmitter();
-
+  deleteIcon = faTrash;
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-cart',
@@ -14,6 +15,7 @@ export class CartComponent {
   address: string = '';
   city: string = '';
   creditCardNumber: string = '';
+  deleteIcon = faTrash;
 
   constructor(private cartService: CartService, private route: Router) {}
 
@@ -46,7 +48,6 @@ export class CartComponent {
 
   removeItem(productId: number): void {
     this.cartService.removeItem(productId);
-    // remove item from array
     this.cartItems = this.cartItems.filter((item) => item.id != productId);
   }
 
@@ -58,7 +59,12 @@ export class CartComponent {
   onSubmit(): void {
     this.cartService.clearCart();
     this.route.navigateByUrl('/confirm', {
-      state: { fullName: this.fullName, totalPrice: this.cartTotalPrice },
+      state: {
+        fullName: this.fullName,
+        totalPrice: this.cartTotalPrice,
+        address: this.address,
+        city: this.city,
+      },
     });
   }
 }

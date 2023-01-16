@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:4200/assets/data.json';
+  private apiUrl = '/assets/data.json';
 
   constructor(private http: HttpClient) {}
 

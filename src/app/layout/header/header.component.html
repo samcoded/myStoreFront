@@ -1,6 +1,8 @@
-<p>
-  <a routerLink="/cart">cart {{totalCartItems|| ""}}</a>
-</p>
-<p>
-  <a routerLink="/">home</a>
-</p>
+<div class="header">
+  <a routerLink="/">myStoreFront</a>
+
+
+  <a routerLink="/cart">Cart <span *ngIf="totalCartItems">({{totalCartItems}})</span></a>
+
+
+</div>
