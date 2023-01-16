@@ -34,20 +34,20 @@ export class CartComponent {
     return total;
   }
 
-  addToCart(productId: number, quantity: number): void {
-    this.cartService.addToCart(productId, quantity);
-    this.cartItems = this.cartService.getProducts();
-    // alert('Product added to cart!');
-  }
-
-  removeItem(productId: number): void {
-    this.cartService.removeItem(productId);
-    this.cartItems = this.cartService.getProducts();
+  addToCart(productId: number): void {
+    this.cartService.addToCart(productId, 1);
+    this.cartItems.find((item) => item.id == productId).quantity += 1;
   }
 
   removeOneItem(productId: number): void {
     this.cartService.removeOneItem(productId);
-    this.cartItems = this.cartService.getProducts();
+    this.cartItems.find((item) => item.id == productId).quantity -= 1;
+  }
+
+  removeItem(productId: number): void {
+    this.cartService.removeItem(productId);
+    // remove item from array
+    this.cartItems = this.cartItems.filter((item) => item.id != productId);
   }
 
   clearCart(): void {

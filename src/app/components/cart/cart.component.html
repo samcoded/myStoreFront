@@ -4,7 +4,7 @@
   {{item.name}} {{item.quantity}}
   ${{item.price * item.quantity}} (${{item.price}} each)
   <p></p>
-  <button (click)="removeOneItem(item.id)">-</button> {{item.quantity}} <button (click)="addToCart(item.id,1)">+</button> <button (click)="removeItem(item.id)">D</button>
+  <button (click)="removeOneItem(item.id)" [disabled]="item.quantity <= 1">-</button> {{item.quantity}} <button (click)="addToCart(item.id)">+</button> <button (click)="removeItem(item.id)">D</button>
 </div>
 
 <p>Total Amount: ${{cartTotalPrice}}</p>
