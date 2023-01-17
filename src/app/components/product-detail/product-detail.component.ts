@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
+import { NotificationService } from '../../services/notification.service';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -18,7 +19,8 @@ export class ProductDetailComponent {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private notify: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +42,8 @@ export class ProductDetailComponent {
 
   addToCart(productId: number): void {
     this.cartService.addToCart(productId, 1);
-    // alert('Product added to cart!');
+    if (this.product.quantity == 0)
+      this.notify.success(`${this.product.name} added to cart!`);
   }
 
   removeOneItem(productId: number): void {
@@ -51,7 +54,7 @@ export class ProductDetailComponent {
   removeItem(productId: number): void {
     this.cartService.removeItem(productId);
     this.updateCart();
-    alert('Product removed from cart!');
+    this.notify.info(`${this.product.name} removed from cart!`);
   }
 
   updateCart(): void {

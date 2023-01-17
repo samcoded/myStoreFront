@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { NotificationService } from '../../services/notification.service';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -17,7 +18,11 @@ export class CartComponent {
   creditCardNumber: string = '';
   deleteIcon = faTrash;
 
-  constructor(private cartService: CartService, private route: Router) {}
+  constructor(
+    private cartService: CartService,
+    private route: Router,
+    private notify: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getProducts();
@@ -48,15 +53,18 @@ export class CartComponent {
 
   removeItem(productId: number): void {
     this.cartService.removeItem(productId);
+    const productName = this.cartItems.find(
+      (item) => item.id == productId
+    ).name;
     this.cartItems = this.cartItems.filter((item) => item.id != productId);
-    alert('Product removed from cart!');
+    this.notify.info(`${productName} removed from cart!`);
   }
 
   clearCart(): void {
     if (confirm('Are you sure you want to clear the cart?')) {
       this.cartService.clearCart();
       this.cartItems = [];
-      alert('Cart cleared!');
+      this.notify.success('Cart cleared!');
     }
   }
 

@@ -16,7 +16,7 @@
           {{ item.price}}
         </div>
         <div class="product-item-detail">
-          <button (click)="removeOneItem(item.id)" [disabled]="item.quantity <= 1" class="product-detail btn btn-primary mx-2">-</button> <span class="product-detail">{{item.quantity}} </span><button (click)=" addToCart(item.id)" class="product-detail btn btn-primary mx-2">+</button> <button (click)="removeItem(item.id)" class="product-detail btn btn-primary mx-2">
+          <button (click)="removeOneItem(item.id)" [disabled]="item.quantity <= 1" class="product-detail btn btn-primary mx-2">-</button> <span class="product-detail">{{item.quantity}} </span><button (click)=" addToCart(item.id)" [disabled]="item.quantity >= 100" class="product-detail btn btn-primary mx-2">+</button> <button (click)="removeItem(item.id)" class="product-detail btn btn-primary mx-2">
             <fa-icon [icon]="deleteIcon"></fa-icon>
           </button>
         </div>

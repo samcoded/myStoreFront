@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { NotificationService } from '../../services/notification.service';
 import { Product } from '../../models/product';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,7 +15,10 @@ export class ProductItemComponent {
   @Output() removeFromCart = new EventEmitter();
   @Output() removeAllFromCart = new EventEmitter();
   deleteIcon = faTrash;
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private notify: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.updateCart();
@@ -23,6 +27,8 @@ export class ProductItemComponent {
   onAddToCart() {
     this.addToCart.emit(this.product);
     this.updateCart();
+    if (this.product.quantity == 1)
+      this.notify.success(`${this.product.name} added to cart!`);
   }
 
   onRemoveOneItem() {
@@ -32,7 +38,7 @@ export class ProductItemComponent {
   onRemoveItem() {
     this.removeAllFromCart.emit(this.product);
     this.updateCart();
-    alert('Product removed from cart!');
+    this.notify.info(`${this.product.name} removed from cart!`);
   }
   updateCart(): void {
     const cartItem = this.cartService.checkProductInCart(this.product.id);

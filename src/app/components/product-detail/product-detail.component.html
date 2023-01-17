@@ -17,7 +17,7 @@
         <button (click)="addToCart(product.id)" class="product-detail btn btn-primary">Add to cart</button>
       </div>
       <div *ngIf="product.quantity">
-        <button (click)="removeOneItem(product.id)" class="product-detail btn btn-primary">-</button> {{product.quantity}} <button (click)="addToCart(product.id)" class="product-detail btn btn-primary">+</button> <button (click)="removeItem(product.id)" class="product-detail btn btn-primary mx-2">
+        <button (click)="removeOneItem(product.id)" class="product-detail btn btn-primary">-</button> {{product.quantity}} <button (click)="addToCart(product.id)" [disabled]="product.quantity >= 100" class="product-detail btn btn-primary">+</button> <button (click)="removeItem(product.id)" class="product-detail btn btn-primary mx-2">
           <fa-icon [icon]="deleteIcon"></fa-icon>
         </button>
       </div>
