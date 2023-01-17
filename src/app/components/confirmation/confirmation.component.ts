@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation',
@@ -11,7 +12,11 @@ export class ConfirmationComponent {
   address: string = '';
   city: string = '';
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
+    if (!history.state.fullName) this.router.navigate(['/']);
+
     this.fullName = history.state.fullName;
     this.totalPrice = history.state.totalPrice;
     this.address = history.state.address;
