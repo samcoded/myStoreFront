@@ -15,26 +15,35 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 ## Routes
 
 `/` - Home and Products Page
+
 `/product/{id}` - Product details of id
+
 `/cart` - Cart items and checkout
+
 `/confirm` - Confirmation after checkout
 
 ## Components
 
 `cart` - Cart and Checkout page
+
 `confirmation` - Confirmation after checkout
+
 `products` - Main page and product list
+
 `product-item` - Individual product item
+
 `product-detail` - Product details
 
 ## Services
 
 `cart` - Handle storing and fetching cart items from localStorage
+
 `product` - Handle fetching products from database
 
 ## Models
 
 `Product` - Product item
+
 `Cart` - Cart item
 
 ## Code scaffolding
