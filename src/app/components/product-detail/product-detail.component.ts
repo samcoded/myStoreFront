@@ -49,6 +49,8 @@ export class ProductDetailComponent {
   removeOneItem(productId: number): void {
     this.cartService.removeOneItem(productId);
     this.updateCart();
+    if (this.product.quantity == 0)
+      this.notify.info(`${this.product.name} removed from cart!`);
   }
 
   removeItem(productId: number): void {

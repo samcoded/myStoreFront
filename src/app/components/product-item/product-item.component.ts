@@ -34,6 +34,8 @@ export class ProductItemComponent {
   onRemoveOneItem() {
     this.removeFromCart.emit(this.product);
     this.updateCart();
+    if (this.product.quantity == 0)
+      this.notify.info(`${this.product.name} removed from cart!`);
   }
   onRemoveItem() {
     this.removeAllFromCart.emit(this.product);
