@@ -1,10 +1,41 @@
 # MyStoreFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
+This is ecommerce application built with Angular
+
+## Install dependencies
+
+```
+ npm install
+```
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Routes
+
+`/` - Home and Products Page
+`/product/{id}` - Product details of id
+`/cart` - Cart items and checkout
+`/confirm` - Confirmation after checkout
+
+## Components
+
+`cart` - Cart and Checkout page
+`confirmation` - Confirmation after checkout
+`products` - Main page and product list
+`product-item` - Individual product item
+`product-detail` - Product details
+
+## Services
+
+`cart` - Handle storing and fetching cart items from localStorage
+`product` - Handle fetching products from database
+
+## Models
+
+`Product` - Product item
+`Cart` - Cart item
 
 ## Code scaffolding
 
@@ -21,7 +52,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
