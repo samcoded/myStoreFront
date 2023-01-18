@@ -45,8 +45,8 @@
       <small *ngIf="cityCheck" class="text-danger">{{cityCheck}}</small><br />
       <label>Credit Card Number: </label><br />
       <input type='text' name='creditCardNumber' required minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="creditCardNumber" (ngModelChange)="validateCreditCardNumber()"><br />
-      <small *ngIf="creditCardCheckNumber" class="text-danger">{{creditCardCheckNumber}}</small><br />
       <small *ngIf="creditCardCheckLength" class="text-danger">{{creditCardCheckLength}}</small><br />
+      <small *ngIf="creditCardCheckNumber" class="text-danger">{{creditCardCheckNumber}}</small><br />
       <input [disabled]="form.invalid" type='submit' value="Submit" class="btn btn-primary my-2" />
     </form>
 
