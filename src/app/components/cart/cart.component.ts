@@ -79,4 +79,48 @@ export class CartComponent {
       },
     });
   }
+
+  // validate fullname from ngmodelchange
+  nameCheck!: string;
+  validateFullName(): void {
+    if (this.fullName.length < 6) {
+      this.nameCheck = 'must be at least 6 characters long!';
+    } else {
+      this.nameCheck = '';
+    }
+  }
+
+  addressCheck!: string;
+  validateAddress(): void {
+    if (this.address.length < 10) {
+      this.addressCheck = 'must be at least 10 characters long!';
+    } else {
+      this.addressCheck = '';
+    }
+  }
+
+  cityCheck!: string;
+  validateCity(): void {
+    if (this.city.length < 3) {
+      this.cityCheck = 'must at least 3 characters long!';
+    } else {
+      this.cityCheck = '';
+    }
+  }
+
+  creditCardCheckNumber!: string;
+  creditCardCheckLength!: string;
+  validateCreditCardNumber(): void {
+    if (this.creditCardNumber.length != 16) {
+      this.creditCardCheckLength = 'must be 16 digits long!';
+    } else {
+      this.creditCardCheckLength = '';
+    }
+    // check if credit card number is a number
+    if (isNaN(Number(this.creditCardNumber))) {
+      this.creditCardCheckNumber = 'must be a number!';
+    } else {
+      this.creditCardCheckNumber = '';
+    }
+  }
 }

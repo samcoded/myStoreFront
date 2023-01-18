@@ -34,17 +34,19 @@
       <div class="cart-item"><b>Total Amount: $
           {{ cartTotalPrice }}</b></div>
       <label>Full Name: </label><br />
-      <input type='text' name='fullName' required minlength="9" placeholder="Enter First Name" [(ngModel)]="fullName">
+      <input type='text' name='fullName' required minlength="6" placeholder="Enter First Name" [(ngModel)]="fullName" #fullname="ngModel" (ngModelChange)="validateFullName()"><br />
+      <small *ngIf="nameCheck" class="text-danger">{{nameCheck}}</small>
       <br />
       <label>Address: </label><br />
-      <input type='text' name='address' required minlength="10" placeholder="Enter Address" [(ngModel)]="address">
-      <br />
+      <input type='text' name='address' required minlength="10" placeholder="Enter Address" [(ngModel)]="address" (ngModelChange)="validateAddress()"><br />
+      <small *ngIf="addressCheck" class="text-danger">{{addressCheck}}</small><br />
       <label>City: </label><br />
-      <input type='text' name='city' required minlength="3" placeholder="Enter City" [(ngModel)]="city">
-      <br />
+      <input type='text' name='city' required minlength="3" placeholder="Enter City" [(ngModel)]="city" (ngModelChange)="validateCity()"><br />
+      <small *ngIf="cityCheck" class="text-danger">{{cityCheck}}</small><br />
       <label>Credit Card Number: </label><br />
-      <input type='text' name='creditCardNumber' required minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="creditCardNumber">
-      <br />
+      <input type='text' name='creditCardNumber' required minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="creditCardNumber" (ngModelChange)="validateCreditCardNumber()"><br />
+      <small *ngIf="creditCardCheckNumber" class="text-danger">{{creditCardCheckNumber}}</small><br />
+      <small *ngIf="creditCardCheckLength" class="text-danger">{{creditCardCheckLength}}</small><br />
       <input [disabled]="form.invalid" type='submit' value="Submit" class="btn btn-primary my-2" />
     </form>
 
